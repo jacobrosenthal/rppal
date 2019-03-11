@@ -12,7 +12,7 @@ categories = ["embedded", "hardware-support"]
 keywords = ["raspberry", "pi", "embedded-hal", "embedded-hal-impl", "hal"]
 
 [dependencies]
-libc = "0.2.50"
+libc = "0.2.40"
 lazy_static = "1.3.0"
 nb = { version = "0.1.1", optional = true }
 embedded-hal = { version = "0.2.2", optional = true }
