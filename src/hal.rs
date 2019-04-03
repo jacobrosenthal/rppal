@@ -133,7 +133,7 @@ impl CountDown for Timer {
         if blah >= self.duration {
             Ok(())
         } else {
-            println!("{}", blah.as_micros())
+            println!("{}", blah.as_micros());
             Err(nb::Error::WouldBlock)
         }
     }
