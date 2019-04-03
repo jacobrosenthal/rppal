@@ -92,18 +92,6 @@ impl DelayUs<u64> for Delay {
     }
 }
 
-pub struct Hertz(pub f64);
-
-impl From<Hertz> for Duration {
-    fn from(item: Hertz) -> Self {
-        if item.0 > 0.0 && item.0.is_finite() {
-            Duration::from_micros(((1.0 / item.0) * 1_000_000.0) as u64)
-        } else {
-            Duration::default()
-        }
-    }
-}
-
 /// Implements the `embedded-hal` `CountDown` trait.
 #[derive(Debug, Copy, Clone)]
 pub struct Timer {
@@ -141,9 +129,11 @@ impl CountDown for Timer {
 
     /// Returns `Ok` if the timer has wrapped.
     fn wait(&mut self) -> nb::Result<(), Void> {
-        if self.now.elapsed() >= self.duration {
+        let blah = self.now.elapsed();
+        if blah >= self.duration {
             Ok(())
         } else {
+            println("{}", blah.as_micros())
             Err(nb::Error::WouldBlock)
         }
     }
